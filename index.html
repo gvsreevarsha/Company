@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <title>Company DataBase</title>
+</head>
+<body class="bg-gradient-to-r from-teal-400 to-blue-500">
+    <div>
+        <div class="h-50 border rounded my-10 mx-10">
+            <div class="flex flex-wrap justify-center my-10">
+                <input type="text" class="h-12 border rounded p-1 ml-4 sm:my-2" placeholder="Company Name">
+                <input type="text" class="h-12 border rounded p-1 ml-4 sm:my-2"  placeholder="Select an Industry">
+                <input type="text" class="h-12 border rounded p-1 ml-4 sm:my-2" placeholder="Select City">
+                <button class="rounded border p-2 ml-4 sm:my-2 bg-red-400">Search</button>
+            </div>
+        </div>
+    </div>
+    <div class="border rounded my-10 mx-10">
+            <div id="Sort"></div>
+            <hr class="bg-black"/>
+            <div id="Companies"></div>
+    </div>
+</body>
+<script>
+    var i;
+    var b="";
+    for(i=0;i<26;i++){
+        b+="<button class='ml-2 text-white p-2 hover:bg-red-400 my-2'>"+String.fromCharCode(65+i)+"</button>";
+        console.log(i);
+    }
+    document.getElementById("Sort").innerHTML=b;
+
+    var details="";
+    for(i=0;i<=10;i++){
+        details+="<div class='my-4 bg-gray-200 rounded ml-20 mr-20 p-2'>"+
+        "<table>"+
+        "<tr><td>Industry:</td></tr>" + 
+        "<tr><td>Company Type:</td></tr> " +
+        "<tr><td>Level of Office:</td></tr> " +
+        "<tr><td>Location	: </td></tr>" +
+        "<tr><td>Phone No	:</td></tr> " +
+        "<tr><td>Website	: </td></tr>" +
+        "</table>"+
+            "</div>";
+    }
+    document.getElementById("Companies").innerHTML=details;
+</script>
+</html>
