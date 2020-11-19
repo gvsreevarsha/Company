@@ -1,5 +1,58 @@
 <?php require 'header.php'?>
-<body class="bg-gradient-to-r from-teal-400 to-blue-500">
+<?php 
+$mysqli = mysqli_connect('localhost', 'root', '', 'companies');
+
+$total_pages = $mysqli->query('SELECT * FROM cdb_cno_name')->num_rows;
+$page = isset($_GET['page']) && is_numeric($_GET['page']) ? $_GET['page'] : 1; 
+
+$num_results_on_page = 100;
+$name=isset($_GET['c_name']) && is_string($_GET['c_name'])?$_GET['c_name']:"";
+$city=isset($_GET['city']) && is_string($_GET['city'])?$_GET['city']:"";
+$type=isset($_GET['type']) && is_string($_GET['type'])?$_GET['type']:"";
+?>
+<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<style>
+    
+    .pagination {
+				list-style-type: none;
+				padding: 10px 0;
+				display: inline-flex;
+				justify-content: space-between;
+				box-sizing: border-box;
+			}
+			.pagination li {
+				box-sizing: border-box;
+				padding-right: 10px;
+			}
+			.pagination li a {
+				box-sizing: border-box;
+				padding: 8px;
+				text-decoration: none;
+				font-size: 12px;
+				font-weight: bold;
+				color: white;
+				border-radius: 4px;
+			}
+			.pagination li a:hover {
+				background-color: #fc8181;
+			}
+			.pagination .next a, .pagination .prev a {
+				text-transform: uppercase;
+				font-size: 12px;
+			}
+			.pagination .currentpage a {
+				background-color: #518acb;
+				color: #fff;
+			}
+			.pagination .currentpage a:hover {
+				background-color: #518acb;
+			}
+        
+
+</style>
+<head/>
+<body  class="bg-gradient-to-r from-teal-400 to-blue-500">
     <div>
         <form class="h-50 border rounded my-10 mx-10" method="GET" action="index.php">
             <div class="flex flex-wrap justify-center my-10">
@@ -38,7 +91,35 @@
     <div class="border rounded my-10 mx-10">
             <div id="Sort"></div>
             <hr class="bg-black"/>
-            <div id="pagination" class="p-2" align="right"></div>
+            <div  class="p-2"  align="right">
+            <ul class="pagination">
+				<?php if ($page > 1): ?>
+				<li class="prev"><a href="index.php?c_name=<?php echo $name?>&type=<?php echo $type?>&city=<?php echo $city?>&page=<?php echo $page-1 ?>">Prev</a></li>
+				<?php endif; ?>
+
+				<?php if ($page > 3): ?>
+				<li class="start"><a href="index.php?c_name=<?php echo $name?>&type=<?php echo $type?>&city=<?php echo $city?>&page=1">1</a></li>
+				<li class="dots text-white">......</li>
+				<?php endif; ?>
+
+				<?php if ($page-2 > 0): ?><li class="page"><a href="index.php?c_name=<?php echo $name?>&type=<?php echo $type?>&city=<?php echo $city?>&page=<?php echo $page-2 ?>"><?php echo $page-2 ?></a></li><?php endif; ?>
+				<?php if ($page-1 > 0): ?><li class="page"><a href="index.php?c_name=<?php echo $name?>&type=<?php echo $type?>&city=<?php echo $city?>&page=<?php echo $page-1 ?>"><?php echo $page-1 ?></a></li><?php endif; ?>
+
+				<li class="currentpage"><a href="index.php?c_name=<?php echo $name?>&type=<?php echo $type?>&city=<?php echo $city?>&page=<?php echo $page ?>"><?php echo $page ?></a></li>
+
+				<?php if ($page+1 < ceil($total_pages / $num_results_on_page)+1): ?><li class="page"><a href="index.php?c_name=<?php echo $name?>&type=<?php echo $type?>&city=<?php echo $city?>&page=<?php echo $page+1 ?>"><?php echo $page+1 ?></a></li><?php endif; ?>
+				<?php if ($page+2 < ceil($total_pages / $num_results_on_page)+1): ?><li class="page"><a href="index.php?c_name=<?php echo $name?>&type=<?php echo $type?>&city=<?php echo $city?>&page=<?php echo $page+2 ?>"><?php echo $page+2 ?></a></li><?php endif; ?>
+
+				<?php if ($page < ceil($total_pages / $num_results_on_page)-2): ?>
+				<li class="dots text-white">......</li>
+				<li class="end"><a href="index.php?c_name=<?php echo $name?>&type=<?php echo $type?>&city=<?php echo $city?>&page=<?php echo ceil($total_pages / $num_results_on_page) ?>"><?php echo ceil($total_pages / $num_results_on_page) ?></a></li>
+				<?php endif; ?>
+
+				<?php if ($page < ceil($total_pages / $num_results_on_page)): ?>
+				<li class="next"><a href="index.php?c_name=<?php echo $name?>&type=<?php echo $type?>&city=<?php echo $city?>&page=<?php echo $page+1 ?>">Next</a></li>
+				<?php endif; ?>
+			</ul>
+            </div>
             <div id="Companies">
                 <?php
                 $row_cnt=0;   
@@ -90,9 +171,9 @@
                 if ($result = $con->query($query)) {
                     while ($row = $result->fetch_assoc()) {
                         $query2="SELECT * FROM `cdb_contact_person`,`cdb_cno_name` WHERE `cdb_contact_person`.`CNo`=`cdb_cno_name`.`CNo` AND `cdb_cno_name`.`CNo`=".$row["CNo"];
-                        echo '<div class="my-4 bg-gray-200 rounded ml-20 mr-20 p-2"><table width="100%" style="vertical-align:text-top;">'.
+                        echo '<div class="my-4 bg-gray-200 rounded ml-20 mr-20 p-2"><table width="100%" style="vertical-align:text-top;" id="myTable">'.
                 '<tr style="vertical-align:text-top;">
-                    <td width="13%">Company ID</td><td width="1%">:</td><td width="19%">'.$row["CNo"].'</td>
+                    <td width="13%">Company ID</td><td width="1%">:</td><td width="19%" class="bg-blue-200 bg-white border flex p-1 shadow-outline rounded w-12">'.$row["CNo"].'</td>
                     <td width="13%">Company Name</td><td width="1%">:</td><td width="19%">'.$row["Name_of_the_Company"].'</td>
                     <td width="13%">Contact Number</td><td width="1%">:</td><td width="19%">'.$row["Contact_No"].'</td>
                 </tr>' .
@@ -141,8 +222,8 @@
                 '<tr style="vertical-align:text-top;">
                     <td>Remarks</td><td>:</td><td colspan="7">'.$row["Remarks"].'</td>
                 </tr>'.
-                "<td><button class='bg-red-500 p-1 rounded'><a href=\"deleterecord.php?id=".$row['CNo']."\">Delete</a></button>".
-                "<button class='bg-green-500 p-1 ml-2 rounded'><a href=\"edit.php?id=".$row['CNo']."\">Edit</a></button></td>".
+                "<td><button class='bg-red-500  w-1/3  p-1 rounded'><a href=\"deleterecord.php?id=".$row['CNo']."\">Delete</a></button>".
+                "<button class='bg-green-500  w-1/3 p-1 ml-2 rounded'><a href=\"edit.php?id=".$row['CNo']."\">Edit</a></button></td>".
                 '</table></div>';
                     }
                     $result->free();
@@ -216,7 +297,18 @@
     ?> 
     </div>
     </div>
+    <div stlye="
+    position: fixed;
+    bottom: 250px;
+    right: 15px;
+    z-index: auto;
+">
+    <a href="#"><span class="fa fa-arrow-up"/></a>
+</div>
+
+
 </body>
+
 <script>
     var i;
     var b="<span class='ml-2 text-white p-2 my-2'>Sort By Company Name ></span>";
@@ -226,7 +318,7 @@
     document.getElementById("Sort").innerHTML=b;
 
     var details="";
-</script>
+    </script>
 <script>
     var i;
     var b="";
@@ -234,12 +326,32 @@
     var type="<?php echo $_GET['type'];?>";
     var city="<?php echo $_GET['city'];?>";
     var num="<?php echo $row_cnt;?>";
-    console.log(num);
+    var count=0;
     for(i=1;i<num/100+1;i++){
-        b+="<a href='index.php?c_name="+name+"&type="+type+"&city="+city+"&page="+i+"'><button class='text-white p-1 hover:bg-red-400  mr-2 p-1'>"+i+"</button></a>";
+    //    b+="<a href='index.php?c_name="+name+"&type="+type+"&city="+city+"&page="+i+"'><button class='text-white p-1 hover:bg-red-400  mr-2 p-1'>"+i+"</button></a>";
+        count++;
+    }
+    var j=1;
+    console.log(count);
+    if(count>10){
+      //  b+="<button class='text-white p-1 hover:bg-red-400  mr-2 p-1' onclick='countdec()'>Prev</button>"
+       b+="<a href='index.php?c_name="+name+"&type="+type+"&city="+city+"&page="+j+"'><button class='text-white p-1 hover:bg-red-400  mr-2 p-1' onclick='countdec()'>Prev</button></a>";
+    for(i=1;i<num/100+1;i++){
+       b+="<a href='index.php?c_name="+name+"&type="+type+"&city="+city+"&page="+i+"'><button class='text-white p-1 hover:bg-red-400  mr-2 p-1'>"+i+"</button></a>";
+        j=i;
+    }
+    function countdec(){
+        j--;
+    }
     }
     b+="&emsp;";
     document.getElementById("pagination").innerHTML=b;
     var details="";
 </script>
+<script>
+    $(document).ready( function () {
+    $('#myTable').DataTable();
+} );
+</script>
+
 <?php require 'footer.php'?>

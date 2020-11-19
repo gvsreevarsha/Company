@@ -1,4 +1,53 @@
 <?php require 'header.php'?>
+<?php 
+$mysqli = mysqli_connect('localhost', 'root', '', 'companies');
+
+$total_pages = $mysqli->query('SELECT * FROM cdb_cno_name')->num_rows;
+$page = isset($_GET['page']) && is_numeric($_GET['page']) ? $_GET['page'] : 1; 
+
+$num_results_on_page = 50;
+$name=isset($_GET['c_name']) && is_string($_GET['c_name'])?$_GET['c_name']:"";
+$city=isset($_GET['city']) && is_string($_GET['city'])?$_GET['city']:"";
+$type=isset($_GET['type']) && is_string($_GET['type'])?$_GET['type']:"";
+?>
+<style>
+    .pagination {
+				list-style-type: none;
+				padding: 10px 0;
+				display: inline-flex;
+				justify-content: space-between;
+				box-sizing: border-box;
+			}
+			.pagination li {
+				box-sizing: border-box;
+				padding-right: 10px;
+			}
+			.pagination li a {
+				box-sizing: border-box;
+				padding: 8px;
+				text-decoration: none;
+				font-size: 12px;
+				font-weight: bold;
+				color: white;
+				border-radius: 4px;
+			}
+			.pagination li a:hover {
+				background-color: #fc8181;
+			}
+			.pagination .next a, .pagination .prev a {
+				text-transform: uppercase;
+				font-size: 12px;
+			}
+			.pagination .currentpage a {
+				background-color: #518acb;
+				color: #fff;
+			}
+			.pagination .currentpage a:hover {
+				background-color: #518acb;
+			}
+
+</style>
+
 <body class="bg-gradient-to-r from-teal-400 to-blue-500">
     <div>
         <form class="h-50 border rounded my-10 mx-10" method="GET" action="user.php">
