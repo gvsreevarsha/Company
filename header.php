@@ -19,6 +19,8 @@
                             <div class="flex flex-wrap justify-between my-5">
                             <a  href="index.php?c_name=&type=&city=">Home</a>
                             <p>&emsp;</p>
+                            <a href="recently_deleted.php">Trash</a>
+                            <p>&emsp;</p>
                             <a  href="logoutadmin.php">Logout</a>
                             </div>
                         </li>

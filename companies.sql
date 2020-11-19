@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.3
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 18, 2020 at 11:18 AM
--- Server version: 10.4.14-MariaDB
--- PHP Version: 7.2.34
+-- Generation Time: Nov 19, 2020 at 10:50 PM
+-- Server version: 10.4.13-MariaDB
+-- PHP Version: 7.2.32
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -97,7 +97,6 @@ INSERT INTO `cdb_cno_name` (`CNo`, `Name_of_the_Company`) VALUES
 (1059, '99 ACRES.COM, B\'LORE'),
 (1060, '99acres.com'),
 (1061, '99GAMES ONINE PVT LTD'),
-(4223, 'a'),
 (1062, 'A & S SOFTWARE'),
 (1063, 'A C NIELSEN INDIA PVT. LTD.'),
 (1064, 'A P C Road Construction'),
@@ -1800,9 +1799,9 @@ INSERT INTO `cdb_cno_name` (`CNo`, `Name_of_the_Company`) VALUES
 (2760, 'Hindware Lacasa'),
 (2761, 'Hines India Real Estate Pvt Ltd'),
 (2762, 'HIRANANDANI'),
-(2763, 'Hiranandani Developers Pvt Ltd');
+(2763, 'Hiranandani Developers Pvt Ltd'),
+(2764, 'HIRE CRAFT');
 INSERT INTO `cdb_cno_name` (`CNo`, `Name_of_the_Company`) VALUES
-(2764, 'HIRE CRAFT'),
 (2765, 'HIRECRAFT SOFTWARE'),
 (2766, 'Hirohama India Pvt Ltd'),
 (2767, 'HITACHI'),
@@ -6500,8 +6499,7 @@ INSERT INTO `cdb_company_data` (`CNo`, `Logo`, `COLLEGE`, `Origin`, `Type_of_Org
 (4207, '', '', 'Bangalore', 'Electrical/Electronic Manufacturing', '500', '---', 'Chandana Bengaluru, Karnataka 560103', '098188 80540', 'BLR', 'Marthalli', 'PTP', ''),
 (4208, '', '', 'Bangalore, Karnataka', 'Real Estate', '200', 'http://www.zuariinfra.com', 'Sreerangapatana Taluk, KRS Rd, Hulikere, Karnataka 571606, Mysore, Karnataka 571606', '7483038888', '', '', '', ''),
 (4209, '', '', '', 'Software company', '1,001-5,000 ', 'https://www.zycus.com', 'Bengaluru, India Safina Towers, Ali Asker Road  6th Floor, Garnet Building, Bagmane World560052.\n\n\n ', '', '', '', '', ''),
-(4210, '', '', '', 'Real Estate', '10001', 'http://www.zyduscadila.com/', '2/2, South Cross, Road, Basavanagudi, Bangalore-560004', '', '', '', '', ''),
-(4223, 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'q', 'w', 'e', 'qwwerty');
+(4210, '', '', '', 'Real Estate', '10001', 'http://www.zyduscadila.com/', '2/2, South Cross, Road, Basavanagudi, Bangalore-560004', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -9734,8 +9732,31 @@ INSERT INTO `cdb_contact_person` (`CNo`, `Contact_Person_Name`, `Contact_Person_
 (4207, '', '', '', ''),
 (4208, '', '', '', ''),
 (4209, '', '', '(866)563-9219', 'marketing@ycus.com'),
-(4210, '', '', ' 678-581-4401', 'zydus@tmacmail.com'),
-(4223, 'r', 't', 'y', 'u');
+(4210, '', '', ' 678-581-4401', 'zydus@tmacmail.com');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `recently_deleted`
+--
+
+CREATE TABLE `recently_deleted` (
+  `CNo` int(11) NOT NULL,
+  `Name_of_the_Company` varchar(74) DEFAULT NULL,
+  `time` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `recently_deleted`
+--
+
+INSERT INTO `recently_deleted` (`CNo`, `Name_of_the_Company`, `time`) VALUES
+(4232, 'r', '2020-11-20 03:00:29'),
+(4234, 'e', '2020-11-20 03:00:29'),
+(4235, 'Avinash', '2020-11-20 03:00:29'),
+(4241, 'WOW', '2020-11-20 03:00:29'),
+(4242, 'WOW1', '2020-11-20 03:00:29'),
+(4243, 'WOW3', '2020-11-20 03:03:39');
 
 -- --------------------------------------------------------
 
@@ -11934,6 +11955,13 @@ ALTER TABLE `cdb_contact_person`
   ADD PRIMARY KEY (`CNo`,`Contact_Person_Phone_No`);
 
 --
+-- Indexes for table `recently_deleted`
+--
+ALTER TABLE `recently_deleted`
+  ADD PRIMARY KEY (`CNo`),
+  ADD UNIQUE KEY `Name_of_the_Company` (`Name_of_the_Company`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -11947,7 +11975,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `cdb_cno_name`
 --
 ALTER TABLE `cdb_cno_name`
-  MODIFY `CNo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4224;
+  MODIFY `CNo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4244;
 
 --
 -- Constraints for dumped tables
