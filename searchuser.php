@@ -15,7 +15,7 @@ if ($result = $con->query($query1)) {
 $start=100*($page-1);
 $query1 = "SELECT * FROM cdb_cno_name,cdb_company_data WHERE cdb_cno_name.`CNo`=cdb_company_data.`CNo` AND Name_of_the_Company LIKE '$let%' LIMIT ".$start.",100";
 ?>
-<?php require 'header.php'?>
+<?php require 'headeruser.php'?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

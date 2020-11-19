@@ -21,7 +21,7 @@
                             <p>&emsp;</p>
                             <a  href="logoutadmin.php">Logout</a>
                             </div>
-                                                  </li>
+                        </li>
                 </ul>
             </nav>
 </header>
