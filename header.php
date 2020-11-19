@@ -7,13 +7,22 @@
     <title>Company Database</title>
 </head>
 <header>
-    <table width="100%" height="30%">
-        <tr>
-            <td width="15%" style="background-color: black;"><img src="images/gitam.jpeg" style="background-color: white;" width="100%" alt="GitamLogo"/></td>
-            <td align="center" width="70%" style="color: white; background-color: #000321; font-size: 35px; font-weight: bolder;">GITAM CAREER GUIDANCE CENTER</td>
-            <td align="right" width="15%" style="color: white; background-color: #000321; font-size: 15px; padding-right: 50px;"><a href="index.php?c_name=&type=&city=">Home</a>&emsp;<a href="logoutadmin.php">Logout</a></td>
-        </tr>
-    </table>
-    <hr class="bg-black" />
+<nav class=" bg-gray-900 justify-between text-white">
+                <ul class="flex flex-wrap justify-between" px-10>
+                        <li class="mr-5">
+                            <p width="15%" ><img src="images/gitam.jpeg" width="200px" style="background-color: white;" width="100%" alt="GitamLogo"/></p>
+                        </li>
+                        <li class="mr-5">
+                            <p class="text-4xl">GITAM CAREER GUIDANCE CENTER</p>
+                        </li>
+                        <li class="mr-5">
+                            <div class="flex flex-wrap justify-between my-5">
+                            <a  href="index.php?c_name=&type=&city=">Home</a>
+                            <p>&emsp;</p>
+                            <a  href="logoutadmin.php">Logout</a>
+                            </div>
+                                                  </li>
+                </ul>
+            </nav>
 </header>
 </html>

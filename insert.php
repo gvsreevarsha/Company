@@ -46,7 +46,7 @@ if($result=mysqli_query($link, $sql))
     }
 }
 if(mysqli_query($link, $sql4)){
-    echo '<div class="flex justify-center p-2 rounded text-2xl">Records added successfully.</div>';
+    echo '<div class="flex justify-center p-2 border rounded text-2xl">Records added successfully.</div>';
 } else{
     echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
 }

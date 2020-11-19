@@ -72,7 +72,7 @@ $query1 = "SELECT * FROM cdb_cno_name,cdb_company_data WHERE cdb_cno_name.`CNo`=
                             $query2="SELECT * FROM `cdb_contact_person`,`cdb_cno_name` WHERE `cdb_contact_person`.`CNo`=`cdb_cno_name`.`CNo` AND `cdb_cno_name`.`CNo`=".$row["CNo"];
                             echo '<div class="my-4 bg-gray-200 rounded ml-20 mr-20 p-2"><table width="100%" style="vertical-align:text-top;">'.
                 '<tr style="vertical-align:text-top;">
-                    <td width="13%">Company ID</td><td width="1%">:</td><td width="19%">'.$row["CNo"].'</td>
+                    <td width="13%">Company ID</td><td width="1%">:</td><td width="19%" class="bg-blue-200 bg-white border flex p-1 shadow-outline rounded w-12">'.$row["CNo"].'</td>
                     <td width="13%">Company Name</td><td width="1%">:</td><td width="19%">'.$row["Name_of_the_Company"].'</td>
                     <td width="13%">Contact Number</td><td width="1%">:</td><td width="19%">'.$row["Contact_No"].'</td>
                 </tr>' .
@@ -121,8 +121,8 @@ $query1 = "SELECT * FROM cdb_cno_name,cdb_company_data WHERE cdb_cno_name.`CNo`=
                 '<tr style="vertical-align:text-top;">
                     <td>Remarks</td><td>:</td><td colspan="7">'.$row["Remarks"].'</td>
                 </tr>'.
-                "<td><button class='bg-red-500 p-1 rounded'><a href=\"deleterecord.php?id=".$row['CNo']."\">Delete</a></button>".
-                "<button class='bg-green-500 p-1 ml-2 rounded'><a href=\"edit.php?id=".$row['CNo']."\">Edit</a></button></td>".
+                "<td><button class='bg-red-500 p-1 w-1/3 rounded'><a href=\"deleterecord.php?id=".$row['CNo']."\">Delete</a></button>".
+                "<button class='bg-green-500 p-1 ml-2  w-1/3 rounded'><a href=\"edit.php?id=".$row['CNo']."\">Edit</a></button></td>".
                 '</table></div>';
                     }
                     $result->free();
@@ -148,7 +148,7 @@ $query1 = "SELECT * FROM cdb_cno_name,cdb_company_data WHERE cdb_cno_name.`CNo`=
     var let="<?php echo $_GET['let'];?>";
     var num="<?php echo $row_cnt;?>";
     for(i=1;i<num/100+1;i++){
-         b+="<a href='search.php?let="+let+"&page="+i+"'><button class='text-white hover:bg-red-400 p-1 border mr-2'>"+i+"</button></a>";
+         b+="<a href='search.php?let="+let+"&page="+i+"'><button class='text-white hover:bg-red-400 p-1  mr-2'>"+i+"</button></a>";
     }
     b+="&emsp;";
     document.getElementById("pagination").innerHTML=b;
