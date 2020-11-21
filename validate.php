@@ -26,7 +26,7 @@ if($pas==$field2name){
  }
 }
   else {
-    echo "error";
+    header('Location:error.php');
   }
 
 ?>

@@ -96,25 +96,21 @@ $type=isset($_GET['type']) && is_string($_GET['type'])?$_GET['type']:"";
 				<?php if ($page > 1): ?>
 				<li class="prev"><a href="index.php?c_name=<?php echo $name?>&type=<?php echo $type?>&city=<?php echo $city?>&page=<?php echo $page-1 ?>">Prev</a></li>
 				<?php endif; ?>
-
-				<?php if ($page > 3): ?>
-				<li class="start"><a href="index.php?c_name=<?php echo $name?>&type=<?php echo $type?>&city=<?php echo $city?>&page=1">1</a></li>
-				<li class="dots text-white">......</li>
-				<?php endif; ?>
-
+                <?php if ($page-4 > 0): ?><li class="page"><a href="index.php?c_name=<?php echo $name?>&type=<?php echo $type?>&city=<?php echo $city?>&page=<?php echo $page-4 ?>"><?php echo $page-4 ?></a></li><?php endif; ?>
+                <?php if ($page-3 > 0): ?><li class="page"><a href="index.php?c_name=<?php echo $name?>&type=<?php echo $type?>&city=<?php echo $city?>&page=<?php echo $page-3 ?>"><?php echo $page-3 ?></a></li><?php endif; ?>
 				<?php if ($page-2 > 0): ?><li class="page"><a href="index.php?c_name=<?php echo $name?>&type=<?php echo $type?>&city=<?php echo $city?>&page=<?php echo $page-2 ?>"><?php echo $page-2 ?></a></li><?php endif; ?>
 				<?php if ($page-1 > 0): ?><li class="page"><a href="index.php?c_name=<?php echo $name?>&type=<?php echo $type?>&city=<?php echo $city?>&page=<?php echo $page-1 ?>"><?php echo $page-1 ?></a></li><?php endif; ?>
 
 				<li class="currentpage"><a href="index.php?c_name=<?php echo $name?>&type=<?php echo $type?>&city=<?php echo $city?>&page=<?php echo $page ?>"><?php echo $page ?></a></li>
 
 				<?php if ($page+1 < ceil($total_pages / $num_results_on_page)+1): ?><li class="page"><a href="index.php?c_name=<?php echo $name?>&type=<?php echo $type?>&city=<?php echo $city?>&page=<?php echo $page+1 ?>"><?php echo $page+1 ?></a></li><?php endif; ?>
-				<?php if ($page+2 < ceil($total_pages / $num_results_on_page)+1): ?><li class="page"><a href="index.php?c_name=<?php echo $name?>&type=<?php echo $type?>&city=<?php echo $city?>&page=<?php echo $page+2 ?>"><?php echo $page+2 ?></a></li><?php endif; ?>
+                <?php if ($page+2 < ceil($total_pages / $num_results_on_page)+1): ?><li class="page"><a href="index.php?c_name=<?php echo $name?>&type=<?php echo $type?>&city=<?php echo $city?>&page=<?php echo $page+2 ?>"><?php echo $page+2 ?></a></li><?php endif; ?>    
+                <?php if ($page+3 < ceil($total_pages / $num_results_on_page)+1): ?><li class="page"><a href="index.php?c_name=<?php echo $name?>&type=<?php echo $type?>&city=<?php echo $city?>&page=<?php echo $page+3 ?>"><?php echo $page+3 ?></a></li><?php endif; ?>
+				<?php if ($page+4 < ceil($total_pages / $num_results_on_page)+1): ?><li class="page"><a href="index.php?c_name=<?php echo $name?>&type=<?php echo $type?>&city=<?php echo $city?>&page=<?php echo $page+4 ?>"><?php echo $page+4 ?></a></li><?php endif; ?>
+                <?php if ($page+5 < ceil($total_pages / $num_results_on_page)+1): ?><li class="page"><a href="index.php?c_name=<?php echo $name?>&type=<?php echo $type?>&city=<?php echo $city?>&page=<?php echo $page+5 ?>"><?php echo $page+5 ?></a></li><?php endif; ?>
+                
 
-				<?php if ($page < ceil($total_pages / $num_results_on_page)-2): ?>
-				<li class="dots text-white">......</li>
-				<li class="end"><a href="index.php?c_name=<?php echo $name?>&type=<?php echo $type?>&city=<?php echo $city?>&page=<?php echo ceil($total_pages / $num_results_on_page) ?>"><?php echo ceil($total_pages / $num_results_on_page) ?></a></li>
-				<?php endif; ?>
-
+                
 				<?php if ($page < ceil($total_pages / $num_results_on_page)): ?>
 				<li class="next"><a href="index.php?c_name=<?php echo $name?>&type=<?php echo $type?>&city=<?php echo $city?>&page=<?php echo $page+1 ?>">Next</a></li>
 				<?php endif; ?>
@@ -261,8 +257,8 @@ $type=isset($_GET['type']) && is_string($_GET['type'])?$_GET['type']:"";
                 '<tr style="vertical-align:center;">                    
                     <td><img src="'.$row["Logo"].'" alt="LOGO" width="100" height="100"/></td>
                     <td colspan="8">
-                        <table width="100%" style="border">
-                            <tr>
+                        <table width="100%" class="bg-blue-200 border border-black rounded shadow-xl">
+                            <tr class="bg-blue-200 border-2 border-black rounded shadow-md">
                                 <td  style="border: 1px solid #718096;">Person Name</td>
                                 <td  style="border: 1px solid #718096;">Designation</td>
                                 <td  style="border: 1px solid #718096;">Phone Number</td>

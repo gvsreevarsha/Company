@@ -14,9 +14,9 @@
     <h1>Login Here</h1>
     <form action="validate.php" method="post">
         <label>Username </label>
-        <input type="text" name="usn" placeholder="Enter Username"><br>
+        <input type="text" name="usn" placeholder="Enter Username" required><br>
         <label>Password </label>
-        <input type="password" name="pass" placeholder="Enter Password">
+        <input type="password" name="pass" placeholder="Enter Password" required>
         <input type="submit" name="submit" value="Login">
         <br>
         <a  href="#">Forget Password</a>

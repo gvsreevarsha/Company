@@ -1,4 +1,4 @@
-<?php require 'header.php'?>
+<?php require 'headeruser.php'?>
 <?php 
 $mysqli = mysqli_connect('localhost', 'root', '', 'companies');
 
